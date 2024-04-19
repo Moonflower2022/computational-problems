@@ -13,6 +13,7 @@ def plot_csv_files(input_folder, output_folder):
     # Loop through each CSV file
     for csv_file in csv_files:
         try:
+            print("Processing file", csv_file)
             # Read the CSV file into a pandas DataFrame
             df = pd.read_csv(os.path.join(input_folder, csv_file))
             
