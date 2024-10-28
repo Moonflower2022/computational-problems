@@ -4,10 +4,13 @@ solutions to computational problems
 
 * `advent_of_code_2023`
   * self explanatory, from <https://adventofcode.com/2023>
-* `bidding_sim`
-  * add problem statement???
+* `bidding_sim`: a problem for my Calculus class in 2024 (problem statement included)
 * `business_dynamics`
-  * add problem statement???
+  * `beer_distribution.py`: simulation of supply chain innefficiencies
+  * `dynamic_general_equlibrium.py`: implementation of a dynamic general equilibrium (problem statement is `dynamic_general_equilibrium.pdf`)
+  * `market_share_model.py`: a simulation of a model of market share (problem statement is `market_share_model.png`)
+  * `polya's_urn_sim.py`: simulation of [polya's urn](https://en.wikipedia.org/wiki/P%C3%B3lya_urn_model)
+  * `reality_game.py`: simulation, analysis, and plotting of graphs for `reality_game.pdf`
 * `COMAP`: an imcomplete (and rushed) solution to [the 2023 HiMCM problem A](https://www.contest.comap.com/highschool/contests/himcm/2023_Problems/2023_HiMCM_Problem_A.pdf)
 * `graphing_csv`: at one point i had a buncha csv files i wanted to see; script for plotting them
 * `multi_armed_bandit`: simulation of many [multi-armed bandit](https://en.wikipedia.org/wiki/Multi-armed_bandit) strategies
