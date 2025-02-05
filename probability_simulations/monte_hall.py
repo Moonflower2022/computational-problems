@@ -15,17 +15,13 @@ def simulate(N=7, K=3):
     if not my_door == car_door:
         doors.append(car_door)
 
-    return car_door == my_door # random.choice(doors) == car_door
-
-
-        
-
+    return random.choice(doors) == car_door
 
 
 if __name__ == "__main__":
-    N = 7
+    N = 8
     K = 3
-    iterations = 100000
+    iterations = 1000000
 
     correct = 0
 
@@ -34,3 +30,5 @@ if __name__ == "__main__":
             correct += 1
 
     print(correct / iterations)
+
+    # expected outcome is ≈ (n - 1) / n / (n - k - 1)
