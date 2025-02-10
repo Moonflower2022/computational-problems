@@ -16,7 +16,7 @@ if __name__ == "__main__":
     socks = [0, 1] # 0 is blue, 1 is white
     days = list(range(7))
 
-    iterations = 1000000
+    iterations = 100000
 
     total_success = 0
     total_failure = 0

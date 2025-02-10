@@ -6,6 +6,7 @@
 using namespace std;
 
 int simulate_slow(int k) {
+    // idk why but this is really slow...
     vector<int> numbers;
     for (int i = 1; i <= 3 * k + 1; i++) {
         numbers.push_back(i);
