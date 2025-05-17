@@ -6,12 +6,7 @@ class SquareLine:
     def __init__(self, squares):
         self.squares = squares
         self.num_squares = len(squares)
-        # Match the original implementation's behavior exactly
-        self.free_whites = [index for index, square in enumerate(squares) if square == 1]
-        random.shuffle(self.free_whites)
-        
-        # Add a set for efficient lookups (but don't use it for selection)
-        self.free_whites_set = set(self.free_whites)
+        self.free_whites = set([index for index, square in enumerate(squares) if square == 1])
 
     def in_line(self, index):
         return 0 <= index < self.num_squares
@@ -19,20 +14,16 @@ class SquareLine:
     def color_black(self, index):
         self.squares[index] = 0
         
-        # Update both data structures if needed
-        if index in self.free_whites_set:
-            self.free_whites_set.remove(index)
-            self.free_whites.remove(index)  # This is O(n) but unavoidable to match behavior
+        if index in self.free_whites:
+            self.free_whites.remove(index)
             
         # Check if adjacent white square now has a black square on both sides
-        if (self.in_line(index + 1) and (index + 1) in self.free_whites_set
+        if (self.in_line(index + 1) and (index + 1) in self.free_whites
                 and self.in_line(index + 2) and self.squares[index + 2] == 0):
-            self.free_whites_set.remove(index + 1)
             self.free_whites.remove(index + 1)
             
-        if (self.in_line(index - 1) and (index - 1) in self.free_whites_set
+        if (self.in_line(index - 1) and (index - 1) in self.free_whites
                 and self.in_line(index - 2) and self.squares[index - 2] == 0):
-            self.free_whites_set.remove(index - 1)
             self.free_whites.remove(index - 1)
 
     def count_whites(self):
@@ -44,8 +35,7 @@ def num_whites_remaining(n):
     square_line = SquareLine(squares)
 
     while square_line.free_whites:
-        # Match the original implementation exactly - use the last element
-        random_free_white = square_line.free_whites[-1]
+        random_free_white = random.choice(list(square_line.free_whites))
         direction = 1 if random.random() < 0.5 else -1
         square_line.color_black(random_free_white + direction)
         
