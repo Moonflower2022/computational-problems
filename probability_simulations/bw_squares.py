@@ -132,4 +132,4 @@ def test_one():
 
 
 if __name__ == "__main__":
-    test_one()
+    test_all()
