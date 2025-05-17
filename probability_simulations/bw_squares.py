@@ -106,7 +106,7 @@ def W(n, iterations):
     return sum(num_whites_remaining(n) for _ in range(iterations)) / iterations
 
 
-if __name__ == "__main__":
+def test_all():
     test_ns = list(range(10, 30+1, 10)) + list(range(1000, 3000+1, 1000)) + list(range(10000, 20000+1, 10000))
     iterations = 1000
 
@@ -123,3 +123,13 @@ if __name__ == "__main__":
 
     end_time = time.time()
     print(f"\nTotal runtime: {end_time - start_time:.2f} seconds")
+
+
+def test_one():
+    n = 2
+    iterations = 1000000
+    print(W(n, iterations))
+
+
+if __name__ == "__main__":
+    test_one()
