@@ -102,34 +102,43 @@ def num_whites_remaining(n):
     return square_line.count_whites()
 
 
-def W(n, iterations):
+def W_simulation(n, iterations=100000):
     return sum(num_whites_remaining(n) for _ in range(iterations)) / iterations
 
 
-def test_all():
+def W_recursive(n):
+    ws = [0, 1, 1]
+    if n < 3:
+        return ws[n]
+    for i in range(3, n+1):
+        ws.append(
+            (ws[i - 1] + 2 * sum([ws[j] for j in range(0, i - 1)])) / (i - 1)
+        )
+    return ws[-1]
+
+
+def test_all(W):
     test_ns = list(range(10, 30+1, 10)) + list(range(1000, 3000+1, 1000)) + list(range(10000, 20000+1, 10000))
-    iterations = 1000
 
     start_time = time.time()
 
     for test_n in test_ns:
         iter_start = time.time()
-        avg_num_whites_remaining = W(test_n, iterations)
+        avg_num_whites_remaining = W(test_n)
         iter_end = time.time()
 
         print(
-            f"n={test_n}, avg_remaining_whites={avg_num_whites_remaining:.2f}, ratio={avg_num_whites_remaining/test_n:.4f}, time={iter_end-iter_start:.2f}s"
+            f"n={test_n}, avg_remaining_whites={avg_num_whites_remaining:.2f}, ratio={avg_num_whites_remaining/test_n}, time={iter_end-iter_start:.2f}s"
         )
 
     end_time = time.time()
     print(f"\nTotal runtime: {end_time - start_time:.2f} seconds")
 
 
-def test_one():
-    n = 2
-    iterations = 1000000
-    print(W(n, iterations))
+def test_one(W):
+    n = 4
+    print(W(n))
 
 
 if __name__ == "__main__":
-    test_all()
+    test_all(W_recursive)
