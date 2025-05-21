@@ -117,9 +117,18 @@ def W_recursive(n):
     return ws[-1]
 
 
-def test_all(W):
-    test_ns = list(range(10, 30+1, 10)) + list(range(1000, 3000+1, 1000)) + list(range(10000, 20000+1, 10000))
+def W_recursive_easy(n):
+    ws = [0, 1, 1]
+    if n < 3:
+        return ws[n]
+    for i in range(3, n+1):
+        ws.append(
+            (ws[i - 1] + ws[i - 2] / (i - 1))
+        )
+    return ws[-1] 
 
+
+def test_all(W, test_ns):
     start_time = time.time()
 
     for test_n in test_ns:
@@ -141,4 +150,6 @@ def test_one(W):
 
 
 if __name__ == "__main__":
-    test_all(W_recursive)
+    test_ns = list(range(10000, 30000+1, 10000)) + list(range(100000, 300000+1, 100000)) + list(range(1000000, 3000000+1, 1000000))
+
+    test_all(W_recursive_easy, test_ns)
