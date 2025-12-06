@@ -35,7 +35,7 @@ bool is_fake(long long id) {
     for (long long length = 1; length <= number_length / 2; length++) {
         if (
             number_length % length == 0 &&
-            number_length / length == 2 &&
+            number_length / length >= 2 &&
             id % get_repetition_divisor(number_length, length) == 0
         ) {
             cout << "  found fake:" << id << endl;
