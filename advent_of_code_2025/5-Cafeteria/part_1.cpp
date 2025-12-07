@@ -8,25 +8,27 @@ int main() {
     fstream puzzle_input("puzzle_input.txt");
     string line;
 
-    vector<bool> spoiled_lookup;
+    vector<pair<long long, long long>> fresh_ranges;
 
     int fresh_count = 0;
 
     while (getline(puzzle_input, line)) {
         if (line == "") {
-            break;
+            continue;
         }
         int dash_index = line.find("-");
         if (dash_index != string::npos) {
-            cout << line.substr(0, dash_index) << endl;
             long long starting_number = stoll(line.substr(0, dash_index));
             long long ending_number = stoll(line.substr(dash_index + 1));
-            for (long long i = starting_number; i <= ending_number; i++) {
-                spoiled_lookup[i] = 1;
-            }
+
+            fresh_ranges.push_back({starting_number, ending_number});
         } else {
-            if (spoiled_lookup[stoll(line)] == 1) {
-                fresh_count++;
+            long long ingredient_id = stoll(line);
+            for (const pair<long long, long long> range : fresh_ranges) {
+                if (ingredient_id >= range.first && ingredient_id <= range.second) {
+                    fresh_count++;
+                    break;
+                }
             }
         }
     }
